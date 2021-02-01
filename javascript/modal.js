@@ -61,6 +61,7 @@ const errorQuantity = document.querySelector(".errorquantity");
 const checkIcon = document.querySelector(".checkbox-input");
 const errorCity = document.querySelector(".errorcity");
 const errorConditionUser = document.querySelector(".errorconditionuser");
+let erreur;
 
 
 
@@ -76,6 +77,7 @@ function validate() {
   // Prénom
   if(firstName.value.trim() === ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
+    erreur = 1;
     return false;
   } 
   else {
@@ -84,6 +86,7 @@ function validate() {
   // Nom
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
+    erreur = 1;
     return false;
   }else {
     errorLastName.remove();
@@ -92,6 +95,7 @@ function validate() {
   // E-mail
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
+    erreur = 1;
     return false;
   } else if (eMail.value.trim() === emailIsValid){
     erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
@@ -103,6 +107,7 @@ function validate() {
   // Anniversaire
   if(birthDate.value.trim() ===""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
+    erreur = 1;
     return false;
   }else{
     errorBirthdate.remove();
@@ -111,6 +116,7 @@ function validate() {
     // Nombre evenement
   if(quantity.value.trim() ===""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
+    erreur = 1;
     return false;
   }else{
     errorQuantity.remove();
@@ -119,6 +125,7 @@ function validate() {
     // Choix villes 
   if(getRadioButton(form.elements["location"]) == undefined){
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
+    erreur = 1;
     return false;
   }else{
     errorCity.remove();
@@ -127,11 +134,19 @@ function validate() {
   // Conditions utilisation impérativement coché 
   if (getCheckBox(form.elements["checkbox-input"]).length == 0 ){
     errorConditionUser.innerHTML = "Vous devez accepter les conditions utilisateur"
+    erreur = 1;
     return false;
   }else{
     errorCity.remove();
   }
 
+  // Afficher message validation
+  if (erreur > 0){
+    e.preventDefault()
+    return false
+  }else{
+    alert("Hello ");
+  }
   
 };
 
