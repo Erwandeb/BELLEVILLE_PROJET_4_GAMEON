@@ -66,16 +66,8 @@ const errorConditionUser = document.querySelector(".errorconditionuser");
 
 
 // validation au moment du clique sur "SUBMIT"
-form.addEventListener('submit', validate);{
+form.addEventListener('submit', validate);
  
-
-  // Message pop up lors de la validation du formulaire 
-  if(form == false ){
-    alert('Merci de bien completer le formulaire')
-  }else{
-    alert('Votre candidature est bien envoyée !')
-  }
-}
 
 
 // fonction pour valider le formulaire 
@@ -140,9 +132,8 @@ function validate() {
     errorCity.remove();
   }
 
-
+  
 };
-
 
 /*---- fonction qui compose la partie validate-----*/
 
