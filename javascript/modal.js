@@ -50,6 +50,7 @@ const submit = document.querySelector('.btn-submit');
 const inputs = document.getElementsByTagName('input');
 //const checkConditionsUser = document.querySelector(".checkbox2-label");
 const loca = document.querySelector('checkbox-input');
+const conditionUtilisateur = document.getElementById("checkbox1");
 
 // Variables erreurs
 const errorFirstName = document.querySelector(".errorFirstName");
@@ -63,27 +64,17 @@ const errorConditionUser = document.querySelector(".errorconditionuser");
 
 
 
+
 // validation au moment du clique sur "SUBMIT"
-form.addEventListener('submit', verifInput)
+form.addEventListener('submit', validate)
+
 
 // fonction pour valider le formulaire 
 function validate() {
-  if (verifInput == true ){
-    alert('bonjour')
-  }else{
-    e.preventDefault();
-    return false;
-  }
-}
-
-// fonction de vérification des champs 
-
-function verifInput() {
   
   // Prénom
   if(firstName.value.trim() === ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
-    e.preventDefault();
     return false;
   } 
   else {
@@ -92,19 +83,17 @@ function verifInput() {
   // Nom
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
-    e.preventDefault();
     return false;
   }else {
     errorLastName.remove();
   }
+  
   // E-mail
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
-    e.preventDefault();
     return false;
   } else if (eMail.value.trim() === emailIsValid){
     erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
-    e.preventDefault();
     return false;
   }else{
     erroreMail.remove();
@@ -113,32 +102,39 @@ function verifInput() {
   // Anniversaire
   if(birthDate.value.trim() ===""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
-    e.preventDefault();
     return false;
   }else{
-    errorBirthdate.remove();s
+    errorBirthdate.remove();
   }
 
     // Nombre evenement
   if(quantity.value.trim() ===""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
-    e.preventDefault();
     return false;
   }else{
     errorQuantity.remove();
     }
 
-    // Choix villes événements
+    // Choix villes 
   if(getRadioButton(form.elements["location"]) == undefined){
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
-    e.preventDefault();
     return false;
   }else{
     errorCity.remove();
   }
 
-  validate();
+  // Conditions utilisation impérativement coché 
+  if (getCheckBox(form.elements["checkbox-input"]).length == 0 ){
+    errorConditionUser.innerHTML = "Vous devez accepter les conditions utilisateur"
+    return false;
+  }else{
+    errorCity.remove();
+  }
+
 };
+
+
+/*---- fonction qui compose la partie validate-----*/
 
 // Fonction de vérification des emails
   function emailIsValid (email) {
@@ -156,4 +152,14 @@ function verifInput() {
    }
    return choix;
  }
- 
+
+ // Fonction checkBox
+function getCheckBox(checkBox) {
+  let choix = [];
+  for  (let caseACocher of checkBox){
+    if (caseACocher.checked){
+      choix.push(caseACocher.value)
+    }
+  }
+  return choix;
+}

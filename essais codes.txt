@@ -373,8 +373,7 @@ if(getRadioButton(form.elements["location"]) == undefined){
 
 
 
-ESSAI 6666
-
+ESSAI V1
 // validation au moment du clique sur "SUBMIT"
 form.addEventListener('submit', (e) => {
   
@@ -387,6 +386,7 @@ form.addEventListener('submit', (e) => {
   else {
     errorFirstName.remove();
   }
+
   // Nom
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
@@ -395,6 +395,7 @@ form.addEventListener('submit', (e) => {
   }else {
     errorLastName.remove();
   }
+
   // E-mail
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
@@ -414,8 +415,8 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     return false;
   }else{
-    errorBirthdate.remove();s
-  }
+    errorBirthdate.remove();
+    }
   
     // Nombre evenement
   if(quantity.value.trim() ===""){
@@ -435,9 +436,10 @@ form.addEventListener('submit', (e) => {
     errorCity.remove();
   }
 
-  if (form != ""){
-    alert('hello')
+  if ((e) => true){
+    alert ('hello');
   }
+  
 });
 
 
@@ -458,3 +460,104 @@ form.addEventListener('submit', (e) => {
    return choix;
  }
  
+ 
+ESSAI V2
+
+
+// validation au moment du clique sur "SUBMIT"
+form.addEventListener('submit', verifInput)
+
+
+// fonction pour valider le formulaire 
+function validate() {
+  if (verifInput == true ){
+    alert('bonjour')
+  }else{
+    e.preventDefault();
+    return false;
+  }
+}
+
+// fonction de vérification des champs 
+
+function verifInput() {
+  
+  // Prénom
+  if(firstName.value.trim() === ""){
+    errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
+    e.preventDefault();
+    return false;
+  } 
+  else {
+    errorFirstName.remove();
+  }
+  // Nom
+  if(lastName.value.trim() ===""){
+    errorLastName.innerHTML = "Vous devez écrire votre nom.";
+    e.preventDefault();
+    return false;
+  }else {
+    errorLastName.remove();
+  }
+  
+  // E-mail
+  if(eMail.value.trim() ===""){
+    erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
+    e.preventDefault();
+    return false;
+  } else if (eMail.value.trim() === emailIsValid){
+    erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
+    e.preventDefault();
+    return false;
+  }else{
+    erroreMail.remove();
+  }
+
+  // Anniversaire
+  if(birthDate.value.trim() ===""){
+    errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
+    e.preventDefault();
+    return false;
+  }else{
+    errorBirthdate.remove();
+  }
+
+    // Nombre evenement
+  if(quantity.value.trim() ===""){
+    errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
+    e.preventDefault();
+    return false;
+  }else{
+    errorQuantity.remove();
+    }
+
+    // Choix villes événements
+  if(getRadioButton(form.elements["location"]) == undefined){
+    errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
+    e.preventDefault();
+    return false;
+  }else{
+    errorCity.remove();
+  }
+
+  validate();
+};
+
+// Fonction de vérification des emails
+  function emailIsValid (email) {
+    return /\S+@\S+\.\S+/.test(email)
+  }
+
+  // Fonction de vérification des boutons radios
+ function getRadioButton(radioBouton){
+   let choix;
+
+   for (let radios of radioBouton){
+     if (radios.checked){
+       choix = radio.value;
+     }
+   }
+   return choix;
+ }
+ 
+ESSAI V3
