@@ -61,7 +61,7 @@ const errorQuantity = document.querySelector(".errorquantity");
 const checkIcon = document.querySelector(".checkbox-input");
 const errorCity = document.querySelector(".errorcity");
 const errorConditionUser = document.querySelector(".errorconditionuser");
-let erreur;
+let erreur = 0;
 
 
 
@@ -77,71 +77,77 @@ function validate() {
   // Prénom
   if(firstName.value.trim() === ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
-    erreur = 1;
+    erreur ++;
     return false;
   } 
   else {
     errorFirstName.remove();
+    erreur = 0;
   }
   // Nom
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
-    erreur = 1;
-    return false;
+    erreur ++;
   }else {
     errorLastName.remove();
+    erreur = 0;
   }
   
   // E-mail
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
-    erreur = 1;
+    erreur ++;
     return false;
   } else if (eMail.value.trim() === emailIsValid){
     erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
     return false;
   }else{
     erroreMail.remove();
+    erreur = 0;
   }
 
   // Anniversaire
   if(birthDate.value.trim() ===""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
-    erreur = 1;
+    erreur ++;
     return false;
   }else{
     errorBirthdate.remove();
+    erreur = 0;
   }
 
     // Nombre evenement
   if(quantity.value.trim() ===""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
-    erreur = 1;
+    erreur ++;
     return false;
   }else{
     errorQuantity.remove();
+    erreur = 0;
     }
 
     // Choix villes 
   if(getRadioButton(form.elements["location"]) == undefined){
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
-    erreur = 1;
+    erreur ++;
     return false;
   }else{
     errorCity.remove();
+    erreur = 0;
   }
 
   // Conditions utilisation impérativement coché 
   if (getCheckBox(form.elements["checkbox-input"]).length == 0 ){
     errorConditionUser.innerHTML = "Vous devez accepter les conditions utilisateur"
-    erreur = 1;
+    erreur ++;
     return false;
   }else{
     errorCity.remove();
+    erreur = 0;
   }
 
   // Afficher message validation
-  if (erreur > 0){
+  if (erreur >= 1){
     e.preventDefault()
     return false
   }else{
