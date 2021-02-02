@@ -168,7 +168,7 @@ function validate(e) {
   }else{
     alert("Ce formulaire est bien envoyé ! ");
     closeModal();
-    // Effacer toutes les données du formulaire
+    removeData();
   }
   
 };
@@ -196,3 +196,12 @@ function validate(e) {
    return choix;
  }
 
+
+function removeData() {
+  firstName.value ="";
+  lastName.value="";
+  eMail.value="";
+  birthDate.value="";
+  quantity.value="";
+  conditionUser.checked="";
+}
