@@ -37,7 +37,7 @@ function closeModal () {
 
 
 
-/*---- fonction permettant la gestion du Formulaire-----*/
+/*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
 // Variables 
 const form = document.getElementById("formulaire");
@@ -48,11 +48,10 @@ const birthDate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const submit = document.querySelector('.btn-submit');
 const inputs = document.getElementsByTagName('input');
-//const checkConditionsUser = document.querySelector(".checkbox2-label");
-const loca = document.querySelector('checkbox-input');
-const conditionUtilisateur = document.getElementById("checkbox1");
+let firstnameRegExp = new RegExp ('[0-9]');
+let lastnameRegExp = new RegExp ('[0-9]');
 
-// Variables erreurs
+// Variables champs d'erreurs
 const errorFirstName = document.querySelector(".errorFirstName");
 const errorLastName = document.querySelector(".errorLastName");
 const erroreMail = document.querySelector(".erroremail");
@@ -71,29 +70,40 @@ form.addEventListener('submit', validate);
  
 
 
-// fonction pour valider le formulaire 
-function validate() {
+// fonction valider le formulaire 
+function validate(e) {
   
-  // Prénom
+
+  // Vérification du champ PRENOM
   if(firstName.value.trim() === ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
     erreur ++;
     return false;
-  } 
+  } else if (firstnameRegExp.test(firstName.value)){
+    errorFirstName.innerHTML = "Votre prénom ne doit pas comporter des chiffres ou des symboles.";
+    erreur ++;
+    return false;
+  }
   else {
     errorFirstName.remove();
     erreur = 0;
   }
-  // Nom
+
+  // Vérification du champ NOM
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
     erreur ++;
-  }else {
+  } else if (lastnameRegExp.test(lastName.value)){
+    errorLastName.innerHTML = "Votre nom ne doit pas comporter des chiffres ou des symboles.";
+    erreur ++;
+    return false;
+  }
+    else {
     errorLastName.remove();
     erreur = 0;
   }
   
-  // E-mail
+  // Vérification du champ EMAIL
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
     erreur ++;
@@ -106,7 +116,7 @@ function validate() {
     erreur = 0;
   }
 
-  // Anniversaire
+  // Vérification du champ ANNIVERSAIRE
   if(birthDate.value.trim() ===""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
     erreur ++;
@@ -116,7 +126,7 @@ function validate() {
     erreur = 0;
   }
 
-    // Nombre evenement
+  // Vérification du champ NOMBRE EVENEMENT
   if(quantity.value.trim() ===""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
     erreur ++;
@@ -126,7 +136,7 @@ function validate() {
     erreur = 0;
     }
 
-    // Choix villes 
+  // Vérification du champ CHOIX DE VILLES
   if(getRadioButton(form.elements["location"]) == undefined){
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
     erreur ++;
@@ -136,25 +146,35 @@ function validate() {
     erreur = 0;
   }
 
-  // Conditions utilisation impérativement coché 
-  if (getCheckBox(form.elements["checkbox-input"]).length == 0 ){
+  // Vérification du champ CONDITION UTILISATION
+  const conditionUser = document.getElementById('checkbox1');
+  let conditionsUserValue = conditionUser.checked;
+
+  if (conditionsUserValue === false ){
     errorConditionUser.innerHTML = "Vous devez accepter les conditions utilisateur"
     erreur ++;
+    e.preventDefault();
     return false;
-  }else{
-    errorCity.remove();
+  } else{
+    conditionsUserValue = true; 
+    errorConditionUser.remove();
     erreur = 0;
+    
   }
 
-  // Afficher message validation
+  // FIN de fonction avec affichage du message de validation
   if (erreur >= 1){
-    e.preventDefault()
-    return false
+   alert('no')
   }else{
-    alert("Hello ");
+    alert("Ce formulaire est bien envoyé ! ");
+    closeModal();
+    // Effacer toutes les données du formulaire
   }
   
 };
+
+
+
 
 /*---- fonction qui compose la partie validate-----*/
 
@@ -163,25 +183,16 @@ function validate() {
     return /\S+@\S+\.\S+/.test(email)
   }
 
+
   // Fonction de vérification des boutons radios
  function getRadioButton(radioBouton){
    let choix;
 
-   for (let radios of radioBouton){
-     if (radios.checked){
+   for (let radio of radioBouton){
+     if (radio.checked){
        choix = radio.value;
      }
    }
    return choix;
  }
 
- // Fonction checkBox
-function getCheckBox(checkBox) {
-  let choix = [];
-  for  (let caseACocher of checkBox){
-    if (caseACocher.checked){
-      choix.push(caseACocher.value)
-    }
-  }
-  return choix;
-}

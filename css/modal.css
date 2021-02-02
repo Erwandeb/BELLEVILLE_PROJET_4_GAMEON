@@ -245,25 +245,32 @@ input {
 }
 
 .errorFirstName{
-font-size: xx-small;
+font-size: small;
+color:#fe152f
 }
 .errorLastName{
-font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 .erroremail{
-font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 .errorbirthdate{
-font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 .errorquantity{
-font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 .errorcity{
-font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 .errorconditionuser{
-  font-size: xx-small;
+  font-size: small;
+  color:#fe152f
 }
 
 .formData[data-error]::after {

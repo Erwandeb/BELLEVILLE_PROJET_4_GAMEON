@@ -678,3 +678,6 @@ function getCheckBox(checkBox) {
   }
   return choix;
 }
+
+Couleur affichag erreur
+#fe152f
