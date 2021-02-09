@@ -72,78 +72,77 @@ form.addEventListener('submit', validate);
 
 // fonction valider le formulaire 
 function validate(e) {
-  
+  let isFirstNameValid = false;
+  let isLastNameValid = false;
+  let isEmailValid = false;
+  let isBirthDateValid = false;
+  let isQuantityValid = false;
+  let isGetRadioButtonValid = false;
+  let isConditionUserValid = false;
 
   // Vérification du champ PRENOM
   if(firstName.value.trim() === ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
-    erreur ++;
-    return false;
+    isFirstNameValid = false;
   } else if (firstnameRegExp.test(firstName.value)){
     errorFirstName.innerHTML = "Votre prénom ne doit pas comporter des chiffres ou des symboles.";
-    erreur ++;
-    return false;
+    isFirstNameValid = false;
   }
   else {
     errorFirstName.remove();
-    erreur = 0;
+    isFirstNameValid = true;
   }
 
   // Vérification du champ NOM
   if(lastName.value.trim() ===""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
-    erreur ++;
+    isLastNameValid = false;
   } else if (lastnameRegExp.test(lastName.value)){
     errorLastName.innerHTML = "Votre nom ne doit pas comporter des chiffres ou des symboles.";
-    erreur ++;
-    return false;
+    isLastNameValid = false;
   }
     else {
     errorLastName.remove();
-    erreur = 0;
+    isLastNameValid = true;
   }
   
   // Vérification du champ EMAIL
   if(eMail.value.trim() ===""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
-    erreur ++;
-    return false;
+    isEmailValid = false;
   } else if (eMail.value.trim() === emailIsValid){
     erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
-    return false;
+    isEmailValid = false;
   }else{
     erroreMail.remove();
-    erreur = 0;
+    isEmailValid = true;
   }
 
   // Vérification du champ ANNIVERSAIRE
   if(birthDate.value.trim() ===""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
-    erreur ++;
-    return false;
+    isBirthDateValid = false;
   }else{
     errorBirthdate.remove();
-    erreur = 0;
+    isBirthDateValid = true;
   }
 
   // Vérification du champ NOMBRE EVENEMENT
   if(quantity.value.trim() ===""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
-    erreur ++;
-    return false;
+    isQuantityValid = false;
   }else{
     errorQuantity.remove();
-    erreur = 0;
+    isQuantityValid = true;
     }
 
   // Vérification du champ CHOIX DE VILLES
   if(getRadioButton(form.elements["location"]) == undefined){
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
-    erreur ++;
-    return false;
+    isGetRadioButtonValid = false;
   }else{
     errorCity.remove();
-    erreur = 0;
+    isGetRadioButtonValid = true;
   }
 
   // Vérification du champ CONDITION UTILISATION
@@ -152,24 +151,22 @@ function validate(e) {
 
   if (conditionsUserValue === false ){
     errorConditionUser.innerHTML = "Vous devez accepter les conditions utilisateur"
-    erreur ++;
+    isConditionUserValid = false;
     e.preventDefault();
-    return false;
   } else{
     conditionsUserValue = true; 
     errorConditionUser.remove();
-    erreur = 0;
+    isConditionUserValid = true;
     
   }
 
   // FIN de fonction avec affichage du message de validation
-  if (erreur >= 1){
-   alert('no')
-  }else{
-    alert("Ce formulaire est bien envoyé ! ");
+  if (isFirstNameValid && isLastNameValid && isEmailValid && isQuantityValid && isGetRadioButtonValid && isBirthDateValid && isConditionUserValid){
+    alert("Ce formulaire est bien envoyé !");
     closeModal();
     removeData();
   }
+   
   
 };
 
