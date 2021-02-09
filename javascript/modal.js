@@ -12,7 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close")
-
+const fenetreEnvoie = document.querySelector('.fenetre-envoi')
 
 /*---- Fonction permettant d'ouvrir et de fermer la fenetre modale-----*/
 
@@ -72,6 +72,9 @@ form.addEventListener('submit', validate);
 
 // fonction valider le formulaire 
 function validate(e) {
+
+  e.preventDefault();
+
   let isFirstNameValid = false;
   let isLastNameValid = false;
   let isEmailValid = false;
@@ -162,7 +165,8 @@ function validate(e) {
 
   // FIN de fonction avec affichage du message de validation
   if (isFirstNameValid && isLastNameValid && isEmailValid && isQuantityValid && isGetRadioButtonValid && isBirthDateValid && isConditionUserValid){
-    alert("Ce formulaire est bien envoyé !");
+   
+    messageConfirmation();
     closeModal();
     removeData();
   }
@@ -201,4 +205,9 @@ function removeData() {
   birthDate.value="";
   quantity.value="";
   conditionUser.checked="";
+}
+
+
+function messageConfirmation(){
+  fenetreEnvoie.style.display = "block";
 }
