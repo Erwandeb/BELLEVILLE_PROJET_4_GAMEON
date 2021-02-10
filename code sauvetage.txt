@@ -1,40 +1,3 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close")
-const fenetreEnvoie = document.querySelector('.fenetre-envoi')
-
-/*---- Fonction permettant d'ouvrir et de fermer la fenetre modale-----*/
-
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
-
-// Click to leave
-closeBtn.addEventListener("click" , closeModal);
-
-// Close modal form
-function closeModal () {
-  modalbg.style.display="none"
-}
-
-
-
 
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
@@ -86,70 +49,57 @@ function validate(e) {
   // Vérification du champ PRENOM
   if(firstName.value.trim() == ""){
     errorFirstName.innerHTML = "Vous devez écrire votre prénom.";
-    firstName.style.border = "2px solid #fe152f";
     isFirstNameValid = false;
   } else if (firstnameRegExp.test(firstName.value)){
-    errorFirstName.innerHTML = "Votre prénom ne doit pas comporter de chiffres ou de symboles.";
-    firstName.style.border = "2px solid #fe152f";
+    errorFirstName.innerHTML = "Votre prénom ne doit pas comporter des chiffres ou des symboles.";
     isFirstNameValid = false;
   }
   else {
     isFirstNameValid = true;
-    errorFirstName.innerHTML = "";
-    firstName.style.border = "";
+    errorFirstName.remove();
   }
 
   // Vérification du champ NOM
   if(lastName.value.trim() ==""){
     errorLastName.innerHTML = "Vous devez écrire votre nom.";
-    lastName.style.border ="2px solid #fe152f";
     isLastNameValid = false;
   } else if (lastnameRegExp.test(lastName.value)){
-    errorLastName.innerHTML = "Votre nom ne doit pas comporter de chiffres ou de symboles.";
-    lastName.style.border ="2px solid #fe152f";
+    errorLastName.innerHTML = "Votre nom ne doit pas comporter des chiffres ou des symboles.";
     isLastNameValid = false;
   }
     else {
+    errorLastName.remove();
     isLastNameValid = true;
-    errorLastName.innerHTML = "";
-    lastName.style.border ="";
   }
   
   // Vérification du champ EMAIL
   if(eMail.value.trim() ==""){
     erroreMail.innerHTML = "Vous devez écrire votre e-mail.";
-    eMail.style.border ="2px solid #fe152f";
     isEmailValid = false;
   } else if (eMail.value.trim() === emailIsValid){
     erroreMail.innerHTML = "L'e-mail saisi est incorrect.";
-    eMail.style.border ="2px solid #fe152f";
     isEmailValid = false;
   }else{
+    erroreMail.remove();
     isEmailValid = true;
-    erroreMail.innerHTML = "";
-    eMail.style.border ="";
   }
 
   // Vérification du champ ANNIVERSAIRE
   if(birthDate.value.trim() ==""){
     errorBirthdate.innerHTML = "Vous devez renseigner votre date d'anniversaire.";
-    birthDate.style.border ="2px solid #fe152f";
     isBirthDateValid = false;
   }else{
+    errorBirthdate.remove();
     isBirthDateValid = true;
-    errorBirthdate.innerHTML = "";
-    birthDate.style.border ="";
   }
 
   // Vérification du champ NOMBRE EVENEMENT
   if(quantity.value.trim() ==""){
     errorQuantity.innerHTML = "Vous devez préciser à combien d'évènement auquel vous avez participé.";
-    quantity.style.border ="2px solid #fe152f";
     isQuantityValid = false;
   }else{
+    errorQuantity.remove();
     isQuantityValid = true;
-    errorQuantity.innerHTML = "";
-    quantity.style.border ="";
     }
 
   // Vérification du champ CHOIX DE VILLES
@@ -157,8 +107,8 @@ function validate(e) {
     errorCity.innerHTML = "Vous devez préciser dans quelle ville etait ces évènements.";
     isGetRadioButtonValid = false;
   }else{
+    errorCity.remove();
     isGetRadioButtonValid = true;
-    errorCity.innerHTML = "";
   }
 
   // Vérification du champ CONDITION UTILISATION
@@ -168,10 +118,11 @@ function validate(e) {
   if (conditionsUserValue === false ){
     errorConditionUser.innerHTML = "Vous devez accepter les conditions d'utilisateur"
     isConditionUserValid = false;
+    //e.preventDefault();
   } else{
     conditionsUserValue = true; 
+    errorConditionUser.remove();
     isConditionUserValid = true;
-    errorConditionUser.innerHTML = "";
     
   }
 
