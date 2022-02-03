@@ -1,4 +1,3 @@
-
 # Bienvenue sur GAME ON 
 
 Dans ce projet, il s'agit d'une landing page autour du jeux vidéo.
