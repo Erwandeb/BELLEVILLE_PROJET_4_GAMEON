@@ -3,12 +3,19 @@
 
 Dans ce projet, il s'agit d'une landing page autour du jeux vidéo.
 
-Techniques Abordées :
+### Techniques de développement :
 
 - Gestion d'un formulaire
 - Corrections des bugs
 - Premiers pas en javascript
 - Créer un REGEX
+
+
+### Outils techniques :
+
+- Vanilla javascript
+- Sass
+- HTML
 
 
 ## Quelques captures d'écrans : 
